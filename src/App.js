@@ -1,23 +1,22 @@
-import logo from './logo.svg';
-import './App.css';
+import { BrowserRouter, Redirect, Route } from "react-router-dom";
+import { ToastContainer } from "react-toastify";
+import "./App.css";
+import { useHistory } from "react-router-dom";
+import LoginPage from "./Components/LoginPage";
+import RedirectPage from "./Components/RedirectPage";
+import Dashboard from "./Components/Dashboard";
 
 function App() {
+  const history = useHistory();
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <ToastContainer />
+      <BrowserRouter history={history}>
+       <Route path="/" component={RedirectPage} />
+        <Route path="/login" component={LoginPage} />
+        <Route path="/dashboard" component={Dashboard}
+        />
+      </BrowserRouter>
     </div>
   );
 }
